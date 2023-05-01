@@ -99,3 +99,22 @@ describe{
   test()
 }
 ```
+
+-----
+### Supertest
+- nodejs http 서버를 테스트하기 위해 만들어진 모듈
+- 통합 테스트 구현 용이
+
+#### 사용방법
+```
+const request = require('supertest');
+
+request(app)
+  .get('/user')
+  .expect('Content-Type', /json/);
+  .expect('Content-Length', '15');
+  .expect(200)
+  end(function(err, res) {
+    if (err) throw err;
+  });
+```
