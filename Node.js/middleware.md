@@ -88,3 +88,27 @@ app.get('/', (req, res) => {
 >> hello
 >> !
 ```
+
+
+### express 에러처리
+- 미들웨어에서 에러가 발생하면 express는 에러를 에러 처리기로 보냄
+```
+app.get('*', (req, res, next) => {
+  setImmediate(() => { throw new Error('error'); });
+});
+app.use((error, req, res, next) => {
+  res.json({ message: error.message});
+})
+```
+- 비동기 요청으로 인한 에러를 위와 같이 처리해주면 에러 처리기에서 에러 메세지를 받지 못하기 때문에 서버가 고장나버림
+
+#### 해결 방법
+```
+app.get('*', (req, res, next) => {
+  setImmediate(() => { next(new Error('error')); });
+});
+app.use((error, req, res, next) => {
+  res.json({ message: error.message});
+})
+```
+- `throw`가 아닌 `next()`를 이용하여 에러 처리 핸들러로 보내주어야 함
