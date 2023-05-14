@@ -105,16 +105,19 @@ describe{
 - nodejs http 서버를 테스트하기 위해 만들어진 모듈
 - 통합 테스트 구현 용이
 
-#### 사용방법
+#### 예제
 ```
 const request = require('supertest');
+const app = require('../../index');
+const newProduct = require("../data/new-product.json");
 
-request(app)
-  .get('/user')
-  .expect('Content-Type', /json/);
-  .expect('Content-Length', '15');
-  .expect(200)
-  end(function(err, res) {
-    if (err) throw err;
-  });
+it("POST /api/products", async() => {
+    const response = await request(app)
+    .post("/api/products")
+    .send(newProduct);
+    expect(response.statusCode).toBe(201);
+    expect(response.body.name).toBe(newProduct.name);
+    expect(response.body.description).toBe(newProduct.description);
+})
 ```
+- `index.js`의 app을 가져오기 위해선 `index.js`에서 `module.exports = app`을 해주어야 됨
