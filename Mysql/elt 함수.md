@@ -20,7 +20,7 @@ SELECT ELT(1.3, "A", "B", "C");
 ```
 ##### 랜덤으로 문자열을 출력
 ```SQL
-SELECT ELT(0.5 + FLOOR(RAND() * 6), 'A', 'B', 'C', 'D', 'E', 'F');
+SELECT ELT(FLOOR(RAND() * 6) + 1, 'A', 'B', 'C', 'D', 'E', 'F');
 ```
-  - RAND()의 결과로 0이 나오면 결과 값이 NULL이 되어버리기 때문에, 이를 방지하기위해 실수(0.5)를 더하여 반올림이 되게 함
-  - [FLOOR(RAND() * N)는 RAND 함수에서 기록](https://github.com/MunSeoHee/TIL/blob/main/Mysql/rand%20%ED%95%A8%EC%88%98.md)
+  - [FLOOR(RAND() * n)](https://github.com/MunSeoHee/TIL/blob/main/Mysql/rand%20%ED%95%A8%EC%88%98.md)은 0부터 n-1까지의 랜덤 정수를 출력
+  - ELT의 위치를 지정하는 N값은 1부터 시작해야되기 때문에 위에 값(FLOOR(RAND() * n))에 + 1을 해줌
