@@ -23,4 +23,4 @@ SELECT ELT(1.3, "A", "B", "C");
 SELECT ELT(0.5 + FLOOR(RAND() * 6), 'A', 'B', 'C', 'D', 'E', 'F');
 ```
   - RAND()의 결과로 0이 나오면 결과 값이 NULL이 되어버리기 때문에, 이를 방지하기위해 실수(0.5)를 더하여 반올림이 되게 함
-  - 
+  - [FLOOR(RAND() * N)는 RAND 함수에서 기록](https://github.com/MunSeoHee/TIL/blob/main/Mysql/rand%20%ED%95%A8%EC%88%98.md)
