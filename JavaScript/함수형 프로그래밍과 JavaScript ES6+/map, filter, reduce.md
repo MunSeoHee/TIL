@@ -20,3 +20,15 @@ log(map(p => p.name, products));
 log(map(p => p.price, products));
 >> [1000, 1500, 2000];
 ```
+- map 함수는 다형성이 높음
+- 이터러블 프로토콜을 따르는 값들을 모두 사용가능
+- 제너레이터 함수의 결과도 map 사용가능. 거의 모든 것들을 map 가능
+```js
+function *gen() {
+  yield 2;
+  yield 3;
+  yield 4;
+}
+log(map(a => a * a, gen()));
+>> [4, 9, 16]
+```
